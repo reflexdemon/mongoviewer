@@ -1,6 +1,12 @@
 package org.mongo.viewer.vo;
 
-public class DataBaseInfo {
+import java.io.Serializable;
+
+public class DataBaseInfo implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2844853187868581941L;
     private String host;
     private int port;
     private String database;
@@ -96,6 +102,60 @@ public class DataBaseInfo {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result
+                + ((database == null) ? 0 : database.hashCode());
+        result = prime * result + ((host == null) ? 0 : host.hashCode());
+        result = prime * result
+                + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + port;
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        DataBaseInfo other = (DataBaseInfo) obj;
+        if (database == null) {
+            if (other.database != null)
+                return false;
+        } else if (!database.equals(other.database))
+            return false;
+        if (host == null) {
+            if (other.host != null)
+                return false;
+        } else if (!host.equals(other.host))
+            return false;
+        if (password == null) {
+            if (other.password != null)
+                return false;
+        } else if (!password.equals(other.password))
+            return false;
+        if (port != other.port)
+            return false;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
+            return false;
+        return true;
     }
 
 }
